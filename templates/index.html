@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+  <title>ocr</title>
+</head>
+<body>
+  <div id="container">
+    <div id="inner-container">
+      <div class="header">
+        <button class="home-btn">Home</button>
+        <div class="title">OCR - Image to Text</div>
+      </div>
+      <div class="content">
+        <div class="content-title">Upload the Image file containing text</div>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input class="select-file-btn" type="file" name="img" accept="image/png, image/jpeg">
+          <input class="upload-btn" type="submit">
+        </form>
+      </div>
+      <div class="note">
+        <ol class="note-list">
+          <li class="note-point">The model will not predict the text accurately if the lines of text in the image are not straight</li>
+          <li class="note-point">The model will not predict the text accurately if there is no plain background in the image</li>
+          <li class="note-point">The Uploaded image file should not be too pixelated or of low quality</li>
+          <li class="note-point">Processing large images files may take time. Its fine as long as the webpage is loading without any error</li>
+        </ol>
+      </div>
+      {% if text %}
+        <div class="text-block">
+          <textarea class="text" readonly="true" rows="20">{{ text }}</textarea>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
